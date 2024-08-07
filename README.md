@@ -64,4 +64,4 @@ Thanks to the open-source community for providing the tools and resources to cre
 
 - **Repository URL**: Replace `https://github.com/Zinedinarnaut/Nanod.git` with the actual URL of your repository if you plan to host it on GitHub or any other platform.
 - **License**: [License](https://github.com/Zinedinarnaut/Nanod/blob/master/LICENSE.txt).
-- **Contributions**: You can modify the contribution section based on how you want others to contribute to your project.
+- **Contributions**: Coming soon

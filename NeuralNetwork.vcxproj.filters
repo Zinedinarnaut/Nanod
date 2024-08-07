@@ -18,7 +18,7 @@
     <ClCompile Include="NeuralNetwork.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NeuralNetworkServer.cpp">
+    <ClCompile Include="NeuralLearning.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="Chatbot.cpp">

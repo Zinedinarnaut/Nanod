@@ -129,7 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Chatbot.cpp" />
     <ClCompile Include="NeuralNetwork.cpp" />
-    <ClCompile Include="NeuralNetworkServer.cpp" />
+    <ClCompile Include="NeuralLearning.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chatbot.h" />

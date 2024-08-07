@@ -1,6 +1,9 @@
 #include "Chatbot.h"
 #include <iostream>
 #include <vector>
+#include <sstream>
+#include <algorithm>
+#include <cctype>
 
 Chatbot::Chatbot() : nn(5, 4, 3) { // 5 input features, 4 hidden neurons, 3 output classes
     initializeResponses();
@@ -13,23 +16,53 @@ void Chatbot::initializeResponses() {
     responses[2] = "I'm called Chatbot. What can I do for you?";
 }
 
+// Convert string to lowercase
+std::string toLowerCase(const std::string& input) {
+    std::string result = input;
+    std::transform(result.begin(), result.end(), result.begin(), ::tolower);
+    return result;
+}
+
+// Tokenize the input text
+std::vector<std::string> tokenize(const std::string& input) {
+    std::vector<std::string> tokens;
+    std::istringstream stream(input);
+    std::string token;
+    while (stream >> token) {
+        tokens.push_back(token);
+    }
+    return tokens;
+}
+
+// Enhanced preprocessing
 std::vector<double> Chatbot::preprocessInput(const std::string& input) {
     std::vector<double> inputVector(5, 0); // Assuming 5 input features
-    if (input.find("hello") != std::string::npos) {
+
+    // Convert input to lowercase
+    std::string lowerInput = toLowerCase(input);
+
+    // Tokenize input
+    std::vector<std::string> tokens = tokenize(lowerInput);
+
+    // Mark features based on tokens
+    if (std::find(tokens.begin(), tokens.end(), "hello") != tokens.end()) {
         inputVector[0] = 1; // Mark "hello"
     }
-    else if (input.find("how are you") != std::string::npos) {
+    if (std::find(tokens.begin(), tokens.end(), "how") != tokens.end() &&
+        std::find(tokens.begin(), tokens.end(), "are") != tokens.end() &&
+        std::find(tokens.begin(), tokens.end(), "you") != tokens.end()) {
         inputVector[1] = 1; // Mark "how are you"
     }
-    else if (input.find("what is your name") != std::string::npos) {
+    if (std::find(tokens.begin(), tokens.end(), "name") != tokens.end()) {
         inputVector[2] = 1; // Mark "what is your name"
     }
-    else if (input.find("help") != std::string::npos) {
+    if (std::find(tokens.begin(), tokens.end(), "help") != tokens.end()) {
         inputVector[3] = 1; // Mark "help"
     }
-    else if (input.find("bye") != std::string::npos) {
+    if (std::find(tokens.begin(), tokens.end(), "bye") != tokens.end()) {
         inputVector[4] = 1; // Mark "bye"
     }
+
     return inputVector;
 }
 
